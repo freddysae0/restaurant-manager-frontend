@@ -1,8 +1,8 @@
 <template>
   <v-container fill-heigth fluid class="bg">
-    <v-row align="center" justify="center" style="margin-top: 3%">
+    <v-row justify="center">
       <v-col cols="12" sm="11" md="10" lg="8" xl="6">
-        <v-card class="elevation-6 mt-10">
+        <v-card>
           <v-form v-model="isFormValid">
             <v-row justify="center">
               <v-col cols="11" sm="6" class="back rounded-bl-xl pa-5">
@@ -59,7 +59,7 @@
                   <v-row v-if="messageError" align="center" justify="center">
                     <v-col cols="12" sm="11">
                       <v-alert shaped type="error">
-                        {{messageError}}
+                        {{ messageError }}
                       </v-alert>
                     </v-col>
                   </v-row>
@@ -137,7 +137,11 @@ export default {
 
   /*max-height: 320px;*/
 }
-
+.container {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+}
 .back {
   background: rgb(22, 22, 21);
   background: linear-gradient(
@@ -147,7 +151,9 @@ export default {
   );
 }
 .bg {
-  background: url("../../assets/background2.png") repeat-y center center fixed;
+  background: radial-gradient(rgb(255, 255, 255, 0.4), rgb(0, 0, 0, 0.4)),
+    linear-gradient(rgba(102, 102, 102, 0.7), rgba(189, 180, 180, 0.4)),
+    url("../../assets/background2.jpg") repeat-y center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -155,8 +161,8 @@ export default {
   min-height: 100vh;
 
   #app {
-    background: url("../../assets/background2.png") no-repeat center center
-      fixed !important;
+    background: linear-gradient(black, black),
+      url("../../assets/background2.jpg") no-repeat center center, fixed !important;
     background-size: cover;
   }
 }

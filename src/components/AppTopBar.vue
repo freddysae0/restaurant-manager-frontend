@@ -1,11 +1,12 @@
 <template>
   <div>
     <!--Barra de navegacion superior-->
-    <v-app-bar 
-    color="black"
+    <v-app-bar
+      color="black"
       dark
       shrink-on-scroll
-      src="../assets/background2.png">
+      src="../assets/background2.png"
+    >
       <!--Icono para menu desplegale-->
 
       <v-toolbar-title>{{ currentRouteName }}</v-toolbar-title>

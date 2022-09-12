@@ -1,18 +1,27 @@
 <template>
   <v-row align="center" justify="center" class="bg">
     <v-col class="col-12" align="center" justify="center">
-     <!--  AQUI PONER EL LOGO -->
-      <v-img max-height="150" max-width="150" class="no-gutters" width="30%" src="../assets/favico.png" contain ></v-img>
-      <v-img max-height="400" max-width="1200" class="no-gutters"  width="80%" src="../assets/logoext.png" contain ></v-img>
+      <!--  AQUI PONER EL LOGO -->
+      <v-img
+        max-height="150"
+        max-width="150"
+        class="no-gutters"
+        width="30%"
+        src="../assets/favico.png"
+        contain
+      ></v-img>
+      <v-img
+        max-height="400"
+        max-width="1200"
+        class="no-gutters"
+        width="80%"
+        src="../assets/logoext.png"
+        contain
+      ></v-img>
     </v-col>
 
-   <!-- BOTONES--> 
-    <v-col
-      class="mx-auto zoomInDown btn_home my-auto"
-      cols="12"
-      align="center"
-      
-    >
+    <!-- BOTONES-->
+    <v-col class="mx-auto zoomInDown btn_home my-auto" cols="12" align="center">
       <v-btn
         min-height="100"
         max-height="100"
@@ -23,16 +32,11 @@
         color="white"
         to="/login"
         outlined
-
-    
-    
       >
         <v-icon left color="white" size="35"> mdi-login</v-icon>
-        <span class="white--text ml-2 txt_btn">{{txtBtn}}</span>
+        <span class="white--text ml-2 txt_btn">{{ txtBtn }}</span>
       </v-btn>
     </v-col>
-   
-    
   </v-row>
 </template>
 
@@ -50,7 +54,8 @@ export default {
 
 <style lang="scss" scoped>
 .bg {
-  background: url("../assets/background2.png") repeat-y center center fixed;
+  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 1)),
+    url("../assets/background2.jpg") repeat-y center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -60,7 +65,7 @@ export default {
   margin-top: 1px;
 }
 
-.btn_home{
+.btn_home {
   margin-top: -200px;
 }
 
@@ -115,5 +120,4 @@ export default {
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
-
 </style>
