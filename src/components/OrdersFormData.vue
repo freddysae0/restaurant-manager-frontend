@@ -8,32 +8,14 @@
       </v-row>
       <!-- Orden -->
       <v-row no-gutters class="mt-5">
-        <v-col cols="8">
+        <v-col cols="10">
           <!-- Input de la orden -->
-          <v-text-field
-            v-if="!isEdit"
-            color="purple darken-2"
-            label="Nombre cliente"
-            v-model="nombreCliente"
-            required
-            clearable
-            :rules="rulesText"
-          ></v-text-field>
-          <v-text-field
-            v-else
-            color="purple darken-2"
-            label="Nombre cliente"
-            v-model="NombreCliente"
-            required
-            clearable
-            :rules="rulesText"
-          ></v-text-field>
         </v-col>
         <!--<v-col cols="7" md="7" class="mt-5 h4 align-center">
           <label>#000000</label>
           LABEL
         </v-col> -->
-        <v-col cols="2" class="ml-5 mt-3">
+        <v-col cols="0" class="ml-5 mt-3">
           <v-btn
             @click="clearFormOrder"
             fab
@@ -182,9 +164,9 @@
                 class="col-12"
                 v-if="
                   isEdit &&
-                  ItemSelectsEdit.some(
-                    (item) => item.id_menu_item === menu.id_menu_item
-                  )
+                    ItemSelectsEdit.some(
+                      (item) => item.id_menu_item === menu.id_menu_item
+                    )
                 "
               >
                 <v-btn
@@ -323,7 +305,9 @@
                     class="white--text my-3"
                     width="100%"
                     @click="dialogPrint = false"
-                    ><v-icon style="margin-left: 95%" size="35">mdi-close</v-icon></v-btn
+                    ><v-icon style="margin-left: 95%" size="35"
+                      >mdi-close</v-icon
+                    ></v-btn
                   >
                   <v-col class="col-12 grey darken-4">
                     <iframe
@@ -430,17 +414,20 @@ export default {
       },
 
       model: null,
-      nombreCliente: "",
+      nombreCliente: null,
       mesaSelect: null,
       nombre_valido: false,
       isEdit: false,
     };
   },
   watch: {
-    isFormValid: function () {
+    isFormValid: function() {
       if (this.isEdit) {
         this.$store.dispatch("setIsValidEditFormAction", this.isFormValid);
       }
+    },
+    mesaSelect: function(val) {
+      this.nombreCliente = val;
     },
   },
   computed: {
@@ -454,7 +441,10 @@ export default {
 
       const order = {
         nombreCliente: this.nombreCliente,
-        fechaOrden: new Date().toJSON().slice(0, 19).replace("T", " "),
+        fechaOrden: new Date()
+          .toJSON()
+          .slice(0, 19)
+          .replace("T", " "),
         idComercial,
         idEmpleado: this.$store.getters.user.idEmpleado,
         nombreEmpleado: this.$store.getters.user.nombre,
@@ -541,11 +531,9 @@ export default {
 
     validarEnvio() {
       if (
-        this.nombreCliente.trim() === "" ||
-        this.nombreCliente === null ||
-        this.nombreCliente.trim().length < 3 ||
         this.ItemSelects.length < 1 ||
-        !this.isFormValid
+        !this.isFormValid ||
+        this.mesaSelect == null
       ) {
         return false;
       }
