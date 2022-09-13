@@ -36,7 +36,7 @@
         <v-window v-model="step">
           <v-window-item :value="1">
             <v-row class="ml-0 ">
-               <v-col cols="12">
+              <v-col cols="12">
                 <masonry
                   :cols="{ default: 4, 1266: 3, 700: 2, 600: 2 }"
                   :gutter="{ default: '10px', 700: '10px' }"
@@ -47,20 +47,21 @@
                     class="mb-4 mt-1 zoomInUp"
                     id="items"
                   >
-                     <v-btn
-                    min-height="120"
-                    min-width="100%"
-                    max-width="100%"
-                    class="caption mx-auto"
-                    :color="colors[index]"
-                    id="boton_categoria"
-                    :disabled="step === 2"
-                    depressed
-                  
-                    @click="() => seleccionarCategoria(category.idCategoria)"
-                  >
-                    <span class="boton_a">{{ category.nombreCategoria }}</span>
-                  </v-btn>
+                    <v-btn
+                      min-height="120"
+                      min-width="100%"
+                      max-width="100%"
+                      class="caption mx-auto"
+                      :color="colors[index]"
+                      id="boton_categoria"
+                      :disabled="step === 2"
+                      depressed
+                      @click="() => seleccionarCategoria(category.idCategoria)"
+                    >
+                      <span class="boton_a">{{
+                        category.nombreCategoria
+                      }}</span>
+                    </v-btn>
                   </div>
                 </masonry>
               </v-col>
@@ -71,9 +72,8 @@
               <v-col class="col-12 mx-auto">
                 <v-list subheader two-line flat color="rgb(247, 247, 247)">
                   <v-list-item-group v-model="ItemSelectsMenu" multiple>
-                    <template v-for="item in items_menu">
+                    <div v-for="item in items_menu" :key="item.id_menu_item">
                       <v-list-item
-                        :key="item.id_menu_item"
                         :value="item"
                         @click="item.disponibilidad = !item.disponibilidad"
                       >
@@ -95,7 +95,7 @@
                         </v-list-item-action>
                         <!-- </template> -->
                       </v-list-item>
-                    </template>
+                    </div>
                   </v-list-item-group>
                 </v-list>
               </v-col>
@@ -123,7 +123,7 @@
 
 <script>
 import { colors } from "../colors/colors";
-
+import axios from "axios";
 export default {
   name: "KitchenItemsState",
 
@@ -200,8 +200,23 @@ export default {
       this.itemMenuSelects = this.itemMenuSelects.map(
         (itemMenuSelect) => itemMenuSelect.id_menu_item
       );
+      console.log(this.itemMenuSelects);
       this.$services.socketioService.changeStateMenuItems(this.itemMenuSelects);
 
+      const options = {
+        method: "PUT",
+        url: "http://127.0.0.1:4000/api/menu-items/changeMenu",
+        headers: { "Content-Type": "application/json" },
+        data: { items: this.itemMenuSelects },
+      };
+      axios
+        .request(options)
+        .then(function(response) {
+          console.log(response.data);
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
       this.clearSelect();
     },
 
