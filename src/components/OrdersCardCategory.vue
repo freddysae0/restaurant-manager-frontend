@@ -126,7 +126,7 @@ import axios from "axios";
 export default {
   name: "OrdersCardCategory",
   watch: {
-    txt_buscar: function(val) {
+    txt_buscar: function() {
       this.filterMenuByName();
     },
   },
