@@ -216,6 +216,20 @@
       <!-- TOTALES -->
       <v-divider class="mt-5"></v-divider>
       <v-list>
+        <v-list-item
+          class="mr-n3"
+          v-for="(menu, index) in ItemSelects"
+          :key="menu.id_menu_item"
+        >
+          <v-list-item-title class="ml-n5 text-h6">
+            {{ menu.nombre_item }}({{ menu.cantidad }})
+          </v-list-item-title>
+          <v-list-item-action-text>
+            <span class="green--text text-h6 font-weight-bold text-no-wrap">
+              $ {{ menu.cantidad * menu.precio }}
+            </span>
+          </v-list-item-action-text>
+        </v-list-item>
         <v-list-item class="mr-n3">
           <v-list-item-title class="ml-n5 text-h6"> Total </v-list-item-title>
           <v-list-item-action-text>
