@@ -73,7 +73,11 @@
                 <v-list subheader two-line flat color="rgb(247, 247, 247)">
                   <v-list-item-group v-model="ItemSelectsMenu" multiple>
                     <template v-for="item in items_menu">
-                      <v-list-item :key="item.id_menu_item" :value="item" class="mb-1 mr-n3">
+                      <v-list-item
+                        :key="item.id_menu_item"
+                        :value="item"
+                        class="mb-1 mr-n3"
+                      >
                         <template>
                           <v-list-item-action>
                             <v-checkbox
@@ -89,12 +93,14 @@
                           </v-list-item-action>
                           <v-list-item-title class=" ml-n5 text-wrap">
                             {{ item.nombre_item }}
-                            <v-list-item-subtitle class=" text-wrap" >
+                            <v-list-item-subtitle class=" text-wrap">
                               {{ item.detalles_item }}
                             </v-list-item-subtitle>
                           </v-list-item-title>
                           <v-list-item-action-text>
-                            <span class=" green--text text-body-2 font-weight-bold text-no-wrap">
+                            <span
+                              class=" green--text text-body-2 font-weight-bold text-no-wrap"
+                            >
                               $ {{ item.precio }}
                             </span>
                           </v-list-item-action-text>
@@ -116,9 +122,14 @@
 <script>
 import EventBus from "../event-bus";
 import { colors } from "../colors/colors";
-
+import axios from "axios";
 export default {
   name: "OrdersCardCategory",
+  watch: {
+    txt_buscar: function(val) {
+      this.filterMenuByName();
+    },
+  },
   mounted() {
     this.$services.shareds
       .getCategories()
@@ -161,7 +172,6 @@ export default {
             );
           }
         });
-
         this.step = 1;
       }
     );
@@ -175,6 +185,8 @@ export default {
   },
   data() {
     return {
+      menu: [],
+      id_menu_item: null,
       categories: {
         hasItems: false,
         items: [],
@@ -201,6 +213,9 @@ export default {
 
       colors,
     };
+  },
+  created() {
+    this.loadMenu();
   },
   computed: {
     ItemSelectsMenu: {
@@ -234,6 +249,21 @@ export default {
   },
 
   methods: {
+    loadMenu() {
+      const options = {
+        method: "GET",
+        url: "http://127.0.0.1:4000/api/menu-items/",
+      };
+
+      axios
+        .request(options)
+        .then((response) => {
+          this.menu = response.data.collection.items;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
     clearSelect() {
       this.itemMenuSelects = [];
       this.step = 1;
