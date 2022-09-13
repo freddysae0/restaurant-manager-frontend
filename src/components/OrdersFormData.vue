@@ -217,26 +217,6 @@
       <v-divider class="mt-5"></v-divider>
       <v-list>
         <v-list-item class="mr-n3">
-          <v-list-item-title class="ml-n5 text-h6">
-            Sub Total
-          </v-list-item-title>
-          <v-list-item-action-text>
-            <span class="green--text text-h6 font-weight-bold text-no-wrap">
-              $ {{ subTotal }}
-            </span>
-          </v-list-item-action-text>
-        </v-list-item>
-        <v-list-item class="mt-n5 mr-n3">
-          <v-list-item-title class="ml-n5 text-h6">
-            Impuestos
-          </v-list-item-title>
-          <v-list-item-action-text>
-            <span class="green--text text-h6 font-weight-bold text-no-wrap">
-              $ {{ impuestos }}
-            </span>
-          </v-list-item-action-text>
-        </v-list-item>
-        <v-list-item class="mt-n5 mr-n3">
           <v-list-item-title class="ml-n5 text-h6"> Total </v-list-item-title>
           <v-list-item-action-text>
             <span class="green--text text-h6 font-weight-bold text-no-wrap">
@@ -458,9 +438,7 @@ export default {
     rulesText,
     rulesCantidad,
     total() {
-      return (parseFloat(this.subTotal) + parseFloat(this.impuestos)).toFixed(
-        2
-      );
+      return parseFloat(this.subTotal).toFixed(2);
     },
     subTotal() {
       return this.ItemSelects.reduce(
