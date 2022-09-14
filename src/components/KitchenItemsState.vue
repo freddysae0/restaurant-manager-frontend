@@ -128,6 +128,11 @@ export default {
   name: "KitchenItemsState",
 
   components: {},
+  watch: {
+    txt_buscar: function() {
+      this.filterMenuByName();
+    },
+  },
 
   mounted() {
     this.$services.shareds
