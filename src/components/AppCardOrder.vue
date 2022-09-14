@@ -3,15 +3,13 @@
     <!-- Header de las Card -->
     <v-list-item three-line :class="color">
       <v-list-item-content class="white--text">
-        <v-list-item-title class="text-h5">{{
-          order.nombreCliente
-        }}</v-list-item-title>
-        <v-list-item-subtitle class="white--text"
-          >Mesero - Numero de Mesa</v-list-item-subtitle
+        <v-list-item-title class="text-h5">
+          Mesa #{{ order.nombreCliente }}</v-list-item-title
         >
+        <v-list-item-subtitle class="white--text">Mesero:</v-list-item-subtitle>
         <v-list-item-subtitle class="white--text"
-          >{{ order.employee.nombre }} {{ order.employee.apellido }} -
-          {{ order.table ? "Mesa " + order.table.numero : "Para llevar" }}
+          >{{ order.employee.nombre }} {{ order.employee.apellido }}
+          <!-- {{ order.table ? "Mesa " + order.table.numero : "Para llevar" }} -->
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
@@ -103,14 +101,15 @@
       >
         <template>
           <v-row class="justify-center white" dense>
-            <v-btn depressed
-                    color="grey lighten-4"
-                    class="red--text mt-2"
-                    width="100%"
-                    @click="dialog = false"
+            <v-btn
+              depressed
+              color="grey lighten-4"
+              class="red--text mt-2"
+              width="100%"
+              @click="dialog = false"
               ><v-icon style="margin-left: 95%" size="35"
-                      >mdi-close</v-icon
-                    ></v-btn
+                >mdi-close</v-icon
+              ></v-btn
             >
             <v-col class="col-12">
               <orders-form-pay
