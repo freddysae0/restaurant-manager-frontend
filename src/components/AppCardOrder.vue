@@ -294,9 +294,7 @@ export default {
         .toFixed(2);
     },
     total() {
-      return (parseFloat(this.subTotal) + parseFloat(this.impuestos)).toFixed(
-        2
-      );
+      return parseFloat(this.subTotal).toFixed(2);
     },
   },
   methods: {
