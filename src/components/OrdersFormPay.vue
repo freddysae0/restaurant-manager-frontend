@@ -2,7 +2,7 @@
   <v-card class="ma-3" elevation="10">
     <v-card-title class="pt-8">
       Pagar orden de
-      <span class="red--text ml-2">{{ order.nombreCliente }}</span>
+      <span class="red--text ml-2">Mesa #{{ order.nombreCliente }}</span>
       <br />
     </v-card-title>
     <v-row class="ma-1">
@@ -10,7 +10,7 @@
         <!-- ITEMS SELECCIONADOS -->
         <v-row class="overflow-x-auto " align="center" justify="center">
           <v-col cols="12" sm="10" md="8" class="pa-5 grey lighten-3">
-            <h3>Items: </h3>
+            <h3>Items:</h3>
             <v-list class="grey lighten-3">
               <template v-for="item in order.order_details">
                 <v-list-item :key="item.OrderDetial">
@@ -22,7 +22,7 @@
                   </v-list-item-action>
 
                   <!-- Titulo -->
-                  <v-list-item-content >
+                  <v-list-item-content>
                     <v-list-item-title
                       style="
                         white-space: normal;
@@ -31,15 +31,19 @@
                         font-weight: bold;
                       "
                     >
-                      {{ item.menu_item? item.menu_item.nombre_item : item.nombre_item }}
+                      {{
+                        item.menu_item
+                          ? item.menu_item.nombre_item
+                          : item.nombre_item
+                      }}
                     </v-list-item-title>
                   </v-list-item-content>
 
-
-
                   <!-- SubTotal -->
                   <v-list-item-action>
-                    <span class="font-weight-bold">$ {{ parseFloat(item.importe).toFixed(2)}}</span>
+                    <span class="font-weight-bold"
+                      >$ {{ parseFloat(item.importe).toFixed(2) }}</span
+                    >
                   </v-list-item-action>
                 </v-list-item>
               </template>
@@ -50,10 +54,6 @@
           <v-col cols="12" sm="6" md="4">
             <h3>Sub Total:</h3>
             <h4>$ {{ subTotal }}</h4>
-          </v-col>
-          <v-col cols="12" sm="6" md="4">
-            <h3>Impuestos (13%):</h3>
-            <h4>$ {{ impuestos }}</h4>
           </v-col>
           <v-col cols="12" sm="12" md="4">
             <h3>Total:</h3>
@@ -90,7 +90,7 @@
                     <v-subheader class="grey--text text--lighten-1 pl-0"
                       >CAMBIO</v-subheader
                     >
-                    <h3 class="mt-4 font-weight-bold">$ {{cashBack}}</h3>
+                    <h3 class="mt-4 font-weight-bold">$ {{ cashBack }}</h3>
                   </v-col>
                 </v-row>
               </v-form>
@@ -119,6 +119,7 @@
 
 <script>
 import { Rules } from "../helpers/rules.js";
+import store from "../store";
 
 export default {
   name: "OrdersFormPay",
@@ -135,24 +136,20 @@ export default {
       type: String,
       required: true,
     },
-    impuestos: {
-      type: String,
-      required: true,
-    },
+
     createOrder: {
       type: Function,
     },
     changeState: {
       type: Function,
     },
-    
   },
   data() {
     return {
       empleado: "",
       mesa: "",
 
-      form:true, //true Form, false Card
+      form: true, //true Form, false Card
 
       btnPayEnable: false,
       btnPayEnableCash: false,
@@ -173,19 +170,17 @@ export default {
   },
   created() {
     this.setRule();
-    
   },
-  mounted(){
-
-    if(this.deDonde ==="from"){
-      this.form = true; 
-    }else{
-      this.form = false; 
+  mounted() {
+    if (this.deDonde === "from") {
+      this.form = true;
+    } else {
+      this.form = false;
     }
-  }, 
+  },
   watch: {
     cashAmount: {
-      handler: function (value, oldVal) {
+      handler: function(value, oldVal) {
         const amount = value - this.total;
         this.cashBack =
           amount >= 0 ? amount.toFixed(2) : (amount * -1).toFixed(2);
@@ -197,6 +192,7 @@ export default {
       this.ruleTest = Rules.test(this.total);
     },
     save() {
+      store.state.efectivo += this.total;
       if (typeof this.createOrder === "function") {
         const order = {
           ...this.order,

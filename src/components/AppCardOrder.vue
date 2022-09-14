@@ -117,7 +117,6 @@
                 :order="order"
                 :total="total"
                 :subTotal="subTotal"
-                :impuestos="impuestos"
               />
             </v-col>
           </v-row>

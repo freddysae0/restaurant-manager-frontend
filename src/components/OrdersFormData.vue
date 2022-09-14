@@ -624,24 +624,24 @@ export default {
 
             this.dialog = false;
 
-            if (response.data.isCashier) {
-              const numeroMesa = orderResponse.table
-                ? orderResponse.table.numero
-                : "Orden para llevar";
+            // if (response.data.isCashier) {
+            //   const numeroMesa = orderResponse.table
+            //     ? orderResponse.table.numero
+            //     : "Orden para llevar";
 
-              this.doc = printTicket(
-                orderResponse.nombreCliente,
-                orderResponse.employee.nombre,
-                numeroMesa,
-                this.subTotal,
-                this.impuestos,
-                this.total,
-                orderResponse.order_details,
-                this.$store.getters.user.commercial
-              );
+            //   this.doc = printTicket(
+            //     orderResponse.nombreCliente,
+            //     orderResponse.employee.nombre,
+            //     numeroMesa,
+            //     this.subTotal,
+            //     this.impuestos,
+            //     this.total,
+            //     orderResponse.order_details,
+            //     this.$store.getters.user.commercial
+            //   );
 
-              this.dialogPrint = true;
-            }
+            //   this.dialogPrint = true;
+            // }
 
             this.clearFormOrder();
 

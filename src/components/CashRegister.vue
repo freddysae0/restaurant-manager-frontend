@@ -265,7 +265,7 @@
   </v-container>
 </template>
 
-<script >
+<script>
 import { Rules } from "../helpers/rules.js";
 import OrdersTableCashOrders from "./OrdersTableCashOrders.vue";
 import OrdersTableCashActions from "./OrdersTableCashActions.vue";

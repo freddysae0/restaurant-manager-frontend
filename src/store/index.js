@@ -1,16 +1,15 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     user: null,
     isLoggedIn: false,
-    
     orderSelect: {
-      nombreCliente: '',
-      idMesa: null
+      nombreCliente: "",
+      idMesa: null,
     },
     itemsMenuSelect: [],
     itemsMenuSelectEdit: [],
@@ -18,7 +17,6 @@ export default new Vuex.Store({
     isValidEditForm: false,
   },
   mutations: {
-
     loginSign(state) {
       state.isLoggedIn = !state.isLoggedIn;
     },
@@ -50,37 +48,35 @@ export default new Vuex.Store({
     setOrderSelect(state, order) {
       state.orderSelect = order;
     },
-
   },
   actions: {
     setUserAction(context, userData) {
-      context.commit('setUser', userData);
+      context.commit("setUser", userData);
     },
 
     setLoginSignAction(context) {
-      context.commit('loginSign');
+      context.commit("loginSign");
     },
 
     setIsValidEditFormAction(context, value) {
-      context.commit('setIsValidFormEdit', value);
+      context.commit("setIsValidFormEdit", value);
     },
     itemsMenuSelectAction(context, items) {
-      context.commit('setItemsMenuSelect', items);
+      context.commit("setItemsMenuSelect", items);
     },
     setItemMenuFieldAction(context, payload) {
-      context.commit('setItemMenuField', payload);
+      context.commit("setItemMenuField", payload);
     },
 
     setItemsMenuSelectEditAction(context, items) {
-      context.commit('setItemsMenuSelectEdit', items);
+      context.commit("setItemsMenuSelectEdit", items);
     },
     setItemsMenuSelectRemoveAction(context, items) {
-      context.commit('setItemsMenuSelectRemove', items);
+      context.commit("setItemsMenuSelectRemove", items);
     },
     setOrderSelectAction(context, order) {
-      context.commit('setOrderSelect', order);
+      context.commit("setOrderSelect", order);
     },
-
   },
   getters: {
     user(state) {
@@ -107,9 +103,8 @@ export default new Vuex.Store({
 
     orderSelect(state) {
       return state.orderSelect;
-    }
+    },
   },
 
-  modules: {
-  }
-})
+  modules: {},
+});

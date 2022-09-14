@@ -57,7 +57,7 @@
 <script>
 import AppCardOrder from "./AppCardOrder.vue";
 import { toastMessage } from "../helpers/messages";
-import { printTicket } from "../helpers/printticket";
+//import { printTicket } from "../helpers/printticket";
 
 export default {
   name: "AppContainerCardsOrders",
@@ -134,18 +134,18 @@ export default {
 
       const numeroMesa = order.table ? order.table.numero : "Orden para llevar";
 
-      this.doc = printTicket(
-        order.nombreCliente, 
-        order.employee.nombre,
-        numeroMesa,
-        subTotal,
-        impuestos,
-        total,
-        order.order_details,
-        this.$store.getters.user.commercial
-      );
+      // this.doc = printTicket(
+      //   order.nombreCliente,
+      //   order.employee.nombre,
+      //   numeroMesa,
+      //   subTotal,
+      //   impuestos,
+      //   total,
+      //   order.order_details,
+      //   this.$store.getters.user.commercial
+      // );
 
-      this.dialogPrint = true;
+      // this.dialogPrint = true;
 
       this.orders.items = this.orders.items.filter(
         (order) => order.idOrden !== id
