@@ -285,14 +285,14 @@ export default {
         .reduce((acc, item) => acc + item.menu_item.precio * item.cantidad, 0)
         .toFixed(2);
     },
-    impuestos() {
-      return this.order.order_details
-        .reduce(
-          (acc, item) => acc + item.cantidad * (item.menu_item.precio * 0.13),
-          0
-        )
-        .toFixed(2);
-    },
+    // impuestos() {
+    //   return this.order.order_details
+    //     .reduce(
+    //       (acc, item) => acc + item.cantidad * (item.menu_item.precio * 0.13),
+    //       0
+    //     )
+    //     .toFixed(2);
+    // },
     total() {
       return parseFloat(this.subTotal).toFixed(2);
     },
