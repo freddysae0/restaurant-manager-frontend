@@ -174,12 +174,17 @@ export default {
             this.$emit("newBoxActionEmit", {
               ...props,
               monto,
-              tipo: isInput? 'Ingresos' : 'Gastos',
+              tipo: isInput,
               fecha: fecha.slice(0, 19).replace("T", " "),
             });
 
+            console.log(isInput)
             if (!isInput) {
               this.$emit("changeExpensesEmit", monto);
+            }
+            else{
+              this.$emit("changeExpensesEmitIngresos", monto);
+
             }
 
             toastMessage(

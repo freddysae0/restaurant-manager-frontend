@@ -97,6 +97,7 @@
               <v-window-item :value="1">
                 <orders-table-cash-actions
                   @changeExpensesEmit="changeExpenses"
+                  @changeExpensesEmitIngresos="changeExpensesIngresos"
                   @newBoxActionEmit="newBoxAction"
                   :idCashRegister="IdCashRegister"
                   :boxActions="BoxActions"
@@ -306,6 +307,7 @@ export default {
     efectivo: 0,
     credito: 0,
     retiros: 0,
+    ingresos:0 ,
     step: 0,
     dialog: false,
     accionEnable: false,
@@ -417,6 +419,9 @@ export default {
       this.retiros += parseFloat(cantidad);
     },
 
+    changeExpensesIngresos(cantidad) {
+      this.credito += parseFloat(cantidad);
+    },
     newBoxAction(boxAction) {
       this.boxActions.items = [...this.boxActions.items, { ...boxAction }];
     },
