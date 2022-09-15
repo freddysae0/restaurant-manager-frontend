@@ -277,7 +277,6 @@
                       :order="Order"
                       :total="total"
                       :subTotal="subTotal"
-                      :impuestos="impuestos"
                     />
                   </v-col>
                 </v-row>
@@ -342,7 +341,7 @@ import { rulesText, rulesCantidad } from "../helpers/rules";
 
 import { toastMessage } from "../helpers/messages";
 
-import { printTicket } from "../helpers/printticket";
+//import { printTicket } from "../helpers/printticket";
 
 export default {
   name: "OrdersFormData",
@@ -460,12 +459,7 @@ export default {
         0
       ).toFixed(2);
     },
-    impuestos() {
-      return this.ItemSelects.reduce(
-        (acc, item) => acc + item.cantidad * (item.precio * 0.13),
-        0
-      ).toFixed(2);
-    },
+   
 
     NombreCliente: {
       set(nombreCliente) {
@@ -634,7 +628,6 @@ export default {
             //     orderResponse.employee.nombre,
             //     numeroMesa,
             //     this.subTotal,
-            //     this.impuestos,
             //     this.total,
             //     orderResponse.order_details,
             //     this.$store.getters.user.commercial

@@ -192,7 +192,6 @@ export default {
       this.ruleTest = Rules.test(this.total);
     },
     save() {
-      store.state.efectivo += this.total;
       if (typeof this.createOrder === "function") {
         const order = {
           ...this.order,

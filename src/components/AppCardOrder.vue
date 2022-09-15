@@ -6,7 +6,7 @@
         <v-list-item-title class="text-h5">
           Mesa #{{ order.nombreCliente }}</v-list-item-title
         >
-        <v-list-item-subtitle class="white--text">Mesero:</v-list-item-subtitle>
+        <v-list-item-subtitle class="white--text">Ordenado de:</v-list-item-subtitle>
         <v-list-item-subtitle class="white--text"
           >{{ order.employee.nombre }} {{ order.employee.apellido }}
           <!-- {{ order.table ? "Mesa " + order.table.numero : "Para llevar" }} -->
@@ -277,8 +277,12 @@ export default {
       type: String,
       required: true,
     },
+    isCashier:{
+      type:Number,
+    }
   },
   computed: {
+
     subTotal() {
       return this.order.order_details
         .reduce((acc, item) => acc + item.menu_item.precio * item.cantidad, 0)
@@ -312,7 +316,6 @@ export default {
               this.order.idOrden,
               response.data.order,
               this.subTotal,
-              this.impuestos,
               this.total
             );
           }

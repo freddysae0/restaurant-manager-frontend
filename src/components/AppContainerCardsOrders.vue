@@ -105,11 +105,10 @@ export default {
         .changeStateOrder(id)
         .then((response) => {
           if (response.data.ok) {
-            if (!response.data.isCashier) {
+            this.isCashier = response.data.isCashier
+              console.log(response.data)
               this.$services.socketioService.doneOrder(response.data.order);
-            } else {
-              this.$services.socketioService.paidoutOrder(response.data.order);
-            }
+            
 
             this.orders.items = this.orders.items.filter(
               (order) => order.idOrden !== id
