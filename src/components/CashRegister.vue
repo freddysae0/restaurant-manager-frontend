@@ -48,7 +48,7 @@
           </v-col>
           <v-col cols="4">
             Ingresos: <br />
-            <span class="font-weight-bold text-body-1"
+            <span class="font-weight-bold text-body-1 green--text"
               >${{ credito.toFixed(2) }}</span
             >
           </v-col>
@@ -296,7 +296,7 @@ export default {
 
           this.estado = "Abierta";
           this.dialogCaja = false;
-          this.idCashRegister = response.data.cashRegister.idCashRegister;
+          this.idCashRegister = response.data.cashRegister[0].idCashRegister;
         }
       })
       .catch((error) => {
@@ -472,7 +472,7 @@ export default {
         })
         .then((response) => {
           if (response.data.ok) {
-            this.idCashRegister = response.data.cashRegister.idCashRegister;
+            this.idCashRegister = response.data.cashRegister[0].idCashRegister;
             this.estado = "Abierta";
             this.dialogCaja = false;
             this.close();
