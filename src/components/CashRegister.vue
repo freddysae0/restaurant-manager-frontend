@@ -18,7 +18,7 @@
             <span><v-icon color="black" size="32">mdi-history</v-icon></span>
             Historial de Arqueo de Caja
           </h2>
-          <orders-cash-history :cashRegisters="cashRegisters" />
+          <orders-cash-history v-if="cashRegisters.hasItems == true" :cashRegisters="cashRegisters" />
         </v-row>
       </v-col>
 
@@ -302,6 +302,8 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+
+
   },
   data: () => ({
     estado: "Cerrada", //Abierta, Cerrada
@@ -346,6 +348,8 @@ export default {
     },
   },
   watch: {
+
+    
     dinerofisico(value) {
       const saldo_final = this.efectivo + this.credito - this.retiros;
 
