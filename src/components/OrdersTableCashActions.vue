@@ -91,6 +91,7 @@
 <script >
 import { Rules } from "../helpers/rules.js";
 import { toastMessage } from "../helpers/messages";
+import { emit } from "process";
 
 export default {
   name: "OrdersTableCashActions",
@@ -104,6 +105,11 @@ export default {
       required: true,
     },
   },
+  mounted(){
+    console.log(this.boxActions.items);
+    this.calcIngresosYGastos(this.boxActions.items)
+  },
+
   data: () => ({
     accionEnable: false,
 
@@ -144,6 +150,7 @@ export default {
     ],
   }),
   watch: {
+   
     dialog(val) {
       val || this.close();
     },
@@ -153,6 +160,22 @@ export default {
       this.editedItem = this.defaultItem;
     },
 
+    
+      calcIngresosYGastos(val){
+      let ingreso = 0;
+      let gasto = 0;
+      for (let i = 0; i < val.length; i++) {
+          if(val[i].tipo == 'Ingreso'){
+            ingreso += val[i].monto; 
+          }
+          if(val[i].tipo == 'Gasto'){
+            gasto += val[i].monto; 
+          }
+      }
+      this.$emit('IngesosValorEmit', ingreso);
+      this.$emit('GastosValorEmit', ingreso);
+    
+    },
     close() {
       this.dialog = false;
     },

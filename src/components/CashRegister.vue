@@ -98,6 +98,7 @@
                 <orders-table-cash-actions
                   @changeExpensesEmit="changeExpenses"
                   @changeExpensesEmitIngresos="changeExpensesIngresos"
+                  @GastosValorEmit="changeExpensesIngresosInit"
                   @newBoxActionEmit="newBoxAction"
                   :idCashRegister="IdCashRegister"
                   :boxActions="BoxActions"
@@ -376,6 +377,18 @@ export default {
               })
             );
 
+
+
+      let ingreso = 0;
+      for (let i = 0; i < this.boxActions.items.length; i++) {
+          if(this.boxActions.items[i].tipo == 'Ingreso'){
+            ingreso += this.boxActions.items[i].monto; 
+          }
+      }
+
+      this.credito = ingreso;
+    
+
             const expenses = this.boxActions.items.filter(
               (boxAction) => !boxAction.isInput
             );
@@ -411,6 +424,7 @@ export default {
         });
     },
 
+
     changeCash(cantidad) {
       this.efectivo += parseFloat(cantidad);
     },
@@ -421,6 +435,9 @@ export default {
 
     changeExpensesIngresos(cantidad) {
       this.credito += parseFloat(cantidad);
+    },
+    changeExpensesIngresosInit(cantidad) {
+      this.credito = parseFloat(cantidad);
     },
     newBoxAction(boxAction) {
       this.boxActions.items = [...this.boxActions.items, { ...boxAction }];
