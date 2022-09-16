@@ -386,6 +386,7 @@ export default {
           }
       }
 
+      
       this.credito = ingreso;
     
 
