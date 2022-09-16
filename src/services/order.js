@@ -46,7 +46,7 @@ export default class Order {
     }
 
     async getAllCashRegisters() {
-        return await this.axios.get(`${this.url}/cash-registers`);
+        return await this.axios.get(`${this.url}/cash-registers/all`);
     }
 
     async getCashRegister() {
