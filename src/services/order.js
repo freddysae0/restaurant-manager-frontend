@@ -45,6 +45,10 @@ export default class Order {
         return await this.axios.get(`${this.url}/cash-registers/by-date`);
     }
 
+    async getAllCashRegisters() {
+        return await this.axios.get(`${this.url}/cash-registers`);
+    }
+
     async getCashRegister() {
         return await this.axios.get(`${this.url}/cash-registers/`, {
             headers: {

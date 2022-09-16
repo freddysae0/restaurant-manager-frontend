@@ -414,10 +414,12 @@ export default {
 
     getCashRegisters() {
       this.$services.orders
-        .getCashRegisters()
+        .getAllCashRegisters()
         .then((response) => {
           if (response.data.ok) {
-            this.cashRegisters = response.data.collection;
+            console.log(response.data.cashRegister);
+            this.cashRegisters.items = response.data.cashRegister;
+            this.cashRegisters.hasItems = true;
           }
         })
         .catch((error) => {
