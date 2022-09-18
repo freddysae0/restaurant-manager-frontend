@@ -70,7 +70,7 @@ export default {
       { text: "Ingresos", value: "ingresos" },
       { text: "Gastos", value: "gastos" },
       { text: "Total", value: "saldo_final" },
-      { text: "Faltante", value: "faltante", class: "faltanteColors" },
+      { text: "Faltante o Sobrante", value: "faltante", class: "faltanteColors" },
     ],
   }),
   methods: {

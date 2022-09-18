@@ -283,20 +283,20 @@ export default {
     OrdersCashHistory,
   },
   mounted() {
+    this.getOrders();
+          this.getAllCashRegisters();
+
     this.$services.orders
       .getCashRegister()
       .then((response) => {
+        
         if (response.data.ok) {
-          if (!response.data.cashRegister) {
-            return;
-          }
-
-          this.getOrders();
-          this.getCashRegisters();
-
+          
           this.estado = "Abierta";
           this.dialogCaja = false;
-          this.idCashRegister = response.data.cashRegister[0].idCashRegister;
+           console.log(response.data.cashRegister.idCashRegister);
+
+          this.idCashRegister = response.data.cashRegister.idCashRegister;
         }
       })
       .catch((error) => {
@@ -416,12 +416,13 @@ export default {
         });
     },
 
-    getCashRegisters() {
+    getAllCashRegisters() {
       this.$services.orders
         .getAllCashRegisters()
         .then((response) => {
+          console.log(response , 'GetAllCashRegisters')
           if (response.data.ok) {
-            console.log(response.data.cashRegister);
+            console.log(response.data.cashRegister , 'response.data.cashRegister');
             this.cashRegisters.items = response.data.cashRegister;
             this.cashRegisters.hasItems = true;
           }
@@ -476,7 +477,8 @@ export default {
         })
         .then((response) => {
           if (response.data.ok) {
-            this.idCashRegister = response.data.cashRegister[0].idCashRegister;
+            this.idCashRegister = response.data.cashRegister.idCashRegister;
+            console.log(response);
             this.estado = "Abierta";
             this.dialogCaja = false;
             this.close();
