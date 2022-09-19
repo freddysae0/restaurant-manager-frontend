@@ -2,6 +2,11 @@
   <manager-layout>
     <v-card>
       <v-card-title class="justify-center">
+        <router-link to="/manager/employees/"
+          ><v-btn>
+            <v-icon>mdi-format-list-bulleted-square</v-icon>
+          </v-btn>
+        </router-link>
         <span class="text-h5 pa-5">Ingresa los datos</span>
       </v-card-title>
 
@@ -135,7 +140,7 @@
                   depressed
                   :disabled="
                     !isFormValid ||
-                    editedItem.password !== editedItem.passwordVerify
+                      editedItem.password !== editedItem.passwordVerify
                   "
                   color="primary"
                   @click="save"
@@ -213,7 +218,6 @@ export default {
     ruleVePass: [],
   }),
   methods: {
-
     //regla para verificar la contraseña
     setRule() {
       this.ruleVePass = Rules.verificarpass(this.editedItem.password);
@@ -232,7 +236,11 @@ export default {
           .createEmployee(employee)
           .then((response) => {
             if (response.data.ok) {
-              toastMessage("success", "Exito", "Se creo el empleado correctamente");
+              toastMessage(
+                "success",
+                "Exito",
+                "Se creo el empleado correctamente"
+              );
 
               this.$router.push("/manager/employees");
             }
@@ -256,14 +264,22 @@ export default {
           .updateEmployee(this.$route.params.id, employee)
           .then((response) => {
             if (response.data.ok) {
-              toastMessage("success", "Exito", "Se actualizo el empleado correctamente");
+              toastMessage(
+                "success",
+                "Exito",
+                "Se actualizo el empleado correctamente"
+              );
 
               this.$router.push("/manager/employees");
             }
           })
           .catch((error) => {
             console.log(error);
-            toastMessage("error", "Error :(", "No se pudo actualizar el empleado");
+            toastMessage(
+              "error",
+              "Error :(",
+              "No se pudo actualizar el empleado"
+            );
           });
       }
     },

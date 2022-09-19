@@ -14,6 +14,11 @@
         hide-details
         class="mr-2"
       ></v-text-field>
+      <router-link to="/manager/tables/create">
+        <v-btn>
+          <v-icon color="blue"> mdi-plus-box</v-icon>
+        </v-btn>
+      </router-link>
     </v-card-title>
 
     <v-data-table
@@ -106,5 +111,4 @@ export default {
 };
 </script>
 
-<style  scoped>
-</style>
+<style scoped></style>

@@ -2,6 +2,11 @@
   <manager-layout>
     <v-card>
       <v-card-title class="justify-center">
+        <router-link to="/manager/tables/"
+          ><v-btn>
+            <v-icon>mdi-format-list-bulleted-square</v-icon>
+          </v-btn>
+        </router-link>
         <span class="text-h5 pa-5">Ingresa los datos</span>
       </v-card-title>
 
@@ -129,7 +134,11 @@ export default {
           .updateTable(id, table)
           .then((response) => {
             if (response.data.ok) {
-              toastMessage("success", "Exito", "Se actualizo la mesa correctamente");
+              toastMessage(
+                "success",
+                "Exito",
+                "Se actualizo la mesa correctamente"
+              );
               this.$router.push("/manager/tables");
             }
           })

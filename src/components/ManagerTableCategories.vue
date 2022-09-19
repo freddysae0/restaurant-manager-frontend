@@ -53,7 +53,7 @@
                   </v-form>
                 </v-container>
               </v-card-text>
-              
+
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="red" text @click="close"> Cancelar </v-btn>
@@ -174,13 +174,16 @@ export default {
                 response.data.category
               );
 
-              toastMessage('success', 'Exito', 'Se creo la categoria correctamente');
-              
+              toastMessage(
+                "success",
+                "Exito",
+                "Se creo la categoria correctamente"
+              );
             }
           })
           .catch((error) => {
             console.log(error);
-            toastMessage('error', 'Error :(', 'No se pudo crear la categoria');
+            toastMessage("error", "Error :(", "No se pudo crear la categoria");
           })
           .finally(() => {
             this.close();
@@ -194,12 +197,16 @@ export default {
                 ...this.categories.items,
                 response.data.category,
               ];
-              toastMessage('success', 'Exito', 'Se creo la categoria correctamente');
+              toastMessage(
+                "success",
+                "Exito",
+                "Se creo la categoria correctamente"
+              );
             }
           })
           .catch((error) => {
             console.log(error);
-            toastMessage('error', 'Error :(', 'No se pudo crear la categoria');
+            toastMessage("error", "Error :(", "No se pudo crear la categoria");
           })
           .finally(() => {
             this.close();
@@ -210,5 +217,4 @@ export default {
 };
 </script>
 
-<style  scoped>
-</style>
+<style scoped></style>

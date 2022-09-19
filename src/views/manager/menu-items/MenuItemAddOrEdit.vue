@@ -2,6 +2,11 @@
   <manager-layout>
     <v-card>
       <v-card-title>
+        <router-link to="/manager/menu-items/"
+          ><v-btn>
+            <v-icon>mdi-format-list-bulleted-square</v-icon>
+          </v-btn>
+        </router-link>
         <span class="text-h5">Ingresar los datos</span>
       </v-card-title>
 
@@ -87,11 +92,10 @@
   </manager-layout>
 </template>
 
-
 <script>
 import { Rules } from "../../../helpers/rules";
 import ManagerLayout from "../../../layout/ManagerLayout.vue";
-import { toastMessage } from '../../../helpers/messages';
+import { toastMessage } from "../../../helpers/messages";
 
 export default {
   name: "MenuItemAddOrEdit",
@@ -111,15 +115,18 @@ export default {
     if (id) {
       this.$services.manager.getMenuItem(id).then((response) => {
         if (response.data.ok) {
-          const { descuento, disponibilidad, ...props } =
-            response.data.menuItem;
+          const {
+            descuento,
+            disponibilidad,
+            ...props
+          } = response.data.menuItem;
 
           this.editedItem = {
             ...props,
-            descuento: descuento*100,
+            descuento: descuento * 100,
             disponibilidad: disponibilidad ? 1 : 2,
           };
-          (descuento)
+          descuento;
         }
       });
     }
@@ -168,14 +175,22 @@ export default {
           .updateMenuItem(id, menuItem)
           .then((response) => {
             if (response.data.ok) {
-              toastMessage("success", "Exito", "Se actualizo el item del menu correctamente");
+              toastMessage(
+                "success",
+                "Exito",
+                "Se actualizo el item del menu correctamente"
+              );
 
               this.$router.push("/manager/menu-items");
             }
           })
           .catch((error) => {
             console.log(error);
-            toastMessage("error", "Error :(", "No se pudo actualizar el item correctamente");
+            toastMessage(
+              "error",
+              "Error :(",
+              "No se pudo actualizar el item correctamente"
+            );
           });
 
         return;
@@ -185,14 +200,22 @@ export default {
         .createMenuItem(menuItem)
         .then((response) => {
           if (response.data.ok) {
-            toastMessage("success", "Exito", "Se creo el item del menu correctamente");
+            toastMessage(
+              "success",
+              "Exito",
+              "Se creo el item del menu correctamente"
+            );
 
             this.$router.push("/manager/menu-items");
           }
         })
         .catch((error) => {
           console.log(error);
-          toastMessage("error", "Error :(", "No se pudo crear el item del menu");
+          toastMessage(
+            "error",
+            "Error :(",
+            "No se pudo crear el item del menu"
+          );
         });
     },
   },

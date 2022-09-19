@@ -14,6 +14,11 @@
         hide-details
         class="mr-2"
       ></v-text-field>
+      <router-link to="/manager/menu-items/create">
+        <v-btn>
+          <v-icon color="blue"> mdi-plus-box</v-icon>
+        </v-btn>
+      </router-link>
     </v-card-title>
 
     <v-data-table
@@ -43,7 +48,7 @@
 </template>
 
 <script>
-import {deleteMessage} from '../helpers/messages';
+import { deleteMessage } from "../helpers/messages";
 export default {
   name: "ManagerTableMenuItems",
   data: () => ({
@@ -116,5 +121,4 @@ export default {
 };
 </script>
 
-<style  scoped>
-</style>
+<style scoped></style>
